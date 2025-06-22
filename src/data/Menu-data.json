@@ -1,0 +1,256 @@
+[
+  {
+    "plan": "Diet Plan",
+    "menuSelection": [
+      {
+        "name": "Salad Ayam",
+        "type": "main dish",
+        "protein": 15,
+        "carbs": 8,
+        "fat": 6,
+        "planType": "Diet Plan",
+        "image": "https://images.unsplash.com/photo-1580013759032-c96505e24c1f?q=80&w=909&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "Salad segar berisi potongan dada ayam, sayuran renyah, dan dressing rendah kalori. Cocok untuk yang ingin diet seimbang."
+      },
+      {
+        "name": "Nasi Merah + Sayur Rebus",
+        "type": "side dish",
+        "protein": 7,
+        "carbs": 35,
+        "fat": 3,
+        "planType": "Diet Plan",
+        "image": "/images/nasiMerah.jpg",
+        "description": "Nasi merah yang kaya serat disajikan dengan sayuran rebus. Pilihan sehat untuk karbohidrat kompleks."
+      },
+      {
+        "name": "Smoothie Buah",
+        "type": "minuman",
+        "protein": 2,
+        "carbs": 25,
+        "fat": 1,
+        "planType": "Diet Plan",
+        "image": "https://images.unsplash.com/photo-1592083809134-edd367f82340?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "Smoothie segar yang terbuat dari campuran buah-buahan, yogurt rendah lemak, dan sedikit madu. Menyegarkan dan bergizi."
+      },
+      {
+        "name": "Sup Sayur",
+        "type": "side dish",
+        "protein": 4,
+        "carbs": 10,
+        "fat": 2,
+        "planType": "Diet Plan",
+        "image": "https://images.unsplash.com/photo-1665594051407-7385d281ad76?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "Sup sayur hangat yang terbuat dari berbagai sayuran segar, bumbu alami, dan kaldu rendah garam. Cocok untuk diet sehat."
+      },
+      {
+        "name": "Nasi Merah",
+        "type": "side dish",
+        "protein": 3,
+        "carbs": 40,
+        "fat": 1,
+        "planType": "Diet Plan",
+        "image": "https://images.unsplash.com/photo-1675150303909-1bb94e33132f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "Nasi merah yang kaya serat, disajikan sebagai sumber karbohidrat sehat. Membantu menjaga energi sepanjang hari."
+      },
+      {
+        "name": "Dada Ayam Kukus",
+        "type": "main dish",
+        "protein": 25,
+        "carbs": 0,
+        "fat": 3,
+        "planType": "Diet Plan",
+        "image": "https://images.unsplash.com/photo-1746718547546-7111b8cc3f7a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "Dada ayam kukus yang lembut dan kaya protein, disajikan tanpa minyak. Pilihan ideal untuk diet tinggi protein."
+      },
+      {
+        "name": "Infused Water",
+        "type": "minuman",
+        "protein": 0,
+        "carbs": 0,
+        "fat": 0,
+        "planType": "Diet Plan",
+        "image": "https://images.unsplash.com/photo-1473348229220-66f5e48021f3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "Air mineral yang diinfus dengan irisan buah segar seperti lemon, mentimun, dan mint. Menyegarkan dan bebas kalori."
+      }
+    ]
+  },
+  {
+    "plan": "Protein Plan",
+    "menuSelection": [
+      {
+        "name": "Grilled Chicken",
+        "type": "main dish",
+        "protein": 30,
+        "carbs": 0,
+        "fat": 5,
+        "planType": "Protein Plan",
+        "image": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "Dada ayam panggang yang kaya protein, disajikan dengan bumbu rempah alami. Ideal untuk meningkatkan asupan protein."
+      },
+      {
+        "name": "Telur Rebus",
+        "type": "side dish",
+        "protein": 6,
+        "carbs": 1,
+        "fat": 5,
+        "planType": "Protein Plan",
+        "image": "https://images.unsplash.com/photo-1606915018436-6cac3b1dc8b3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "Telur rebus yang kaya protein dan mudah dicerna, cocok sebagai camilan sehat atau tambahan pada salad."
+      },
+      {
+        "name": "Tahu Tempe",
+        "type": "side dish",
+        "protein": 12,
+        "carbs": 10,
+        "fat": 6,
+        "planType": "Protein Plan",
+        "image": "/images/tahuTempe.jpg",
+        "description": "Tahu dan tempe yang kaya protein nabati, disajikan dengan bumbu kecap manis. Sumber protein yang lezat dan bergizi."
+      },
+      {
+        "name": "Susu Protein",
+        "type": "minuman",
+        "protein": 20,
+        "carbs": 5,
+        "fat": 2,
+        "planType": "Protein Plan",
+        "image": "https://images.unsplash.com/photo-1639151082235-406d8eb262b9?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "Susu protein yang kaya akan asam amino, ideal untuk pemulihan otot setelah latihan. Dapat diminum kapan saja."
+      },
+      {
+        "name": "Beef Steak",
+        "type": "main dish",
+        "protein": 28,
+        "carbs": 0,
+        "fat": 10,
+        "planType": "Protein Plan",
+        "image": "https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "Steak daging sapi yang juicy dan kaya protein, disajikan dengan bumbu lada hitam. Cocok untuk penggemar daging."
+      },
+      {
+        "name": "Telur Omelet",
+        "type": "side dish",
+        "protein": 10,
+        "carbs": 1,
+        "fat": 7,
+        "planType": "Protein Plan",
+        "image": "https://images.unsplash.com/photo-1652346637902-37c7b51e35fa?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "Omelet telur yang fluffy dan kaya protein, diisi dengan sayuran segar. Pilihan sarapan sehat yang mengenyangkan."
+      },
+      {
+        "name": "Tempe Orek",
+        "type": "side dish",
+        "protein": 8,
+        "carbs": 10,
+        "fat": 5,
+        "planType": "Protein Plan",
+        "image": "/images/tempeOrek.jpg",
+        "description": "Tempe orek yang gurih dan kaya protein, dimasak dengan bumbu kecap manis. Sempurna sebagai lauk pendamping nasi."
+      },
+      {
+        "name": "Yogurt",
+        "type": "minuman",
+        "protein": 6,
+        "carbs": 8,
+        "fat": 4,
+        "planType": "Protein Plan",
+        "image": "https://images.unsplash.com/photo-1571212515416-fef01fc43637?q=80&w=682&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "Yogurt rendah lemak yang kaya probiotik, baik untuk pencernaan. Dapat dinikmati sebagai camilan atau sarapan."
+      }
+    ]
+  },
+  {
+    "plan": "Royal Plan",
+    "menuSelection": [
+      {
+        "name": "Ikan Salmon Panggang",
+        "type": "main dish",
+        "protein": 30,
+        "carbs": 0,
+        "fat": 12,
+        "planType": "Royal Plan",
+        "image": "https://images.unsplash.com/photo-1708388464516-b52bfefde2b0?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "Ikan salmon panggang yang kaya omega-3, disajikan dengan bumbu lemon dan rempah. Pilihan sehat dan lezat."
+      },
+      {
+        "name": "Sop Jamur",
+        "type": "side dish",
+        "protein": 6,
+        "carbs": 12,
+        "fat": 2,
+        "planType": "Royal Plan",
+        "image": "https://images.unsplash.com/photo-1560684352-8497838a2229?q=80&w=828&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "Sop jamur yang hangat dan gurih, terbuat dari jamur segar dan kaldu sayuran. Cocok sebagai pembuka atau pendamping."
+      },
+      {
+        "name": "Salad Buah",
+        "type": "side dish",
+        "protein": 2,
+        "carbs": 18,
+        "fat": 1,
+        "planType": "Royal Plan",
+        "image": "https://images.unsplash.com/photo-1675092789086-4bd2b93ffc69?q=80&w=1089&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "Salad buah segar yang terdiri dari berbagai macam buah musiman, disajikan dengan dressing yogurt. Menyegarkan dan kaya vitamin."
+      },
+      {
+        "name": "Jus Cold-Pressed",
+        "type": "minuman",
+        "protein": 1,
+        "carbs": 20,
+        "fat": 0,
+        "planType": "Royal Plan",
+        "image": "/images/juscold.webp",
+        "description": "Jus cold-pressed yang terbuat dari campuran sayuran dan buah segar, kaya nutrisi dan antioksidan. Menyegarkan dan menyehatkan."
+      },
+      {
+        "name": "Daging Wagyu",
+        "type": "main dish",
+        "protein": 32,
+        "carbs": 0,
+        "fat": 15,
+        "planType": "Royal Plan",
+        "image": "https://images.unsplash.com/photo-1570481060336-9c82d078588e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      },
+      {
+        "name": "Sup Labu",
+        "type": "side dish",
+        "protein": 3,
+        "carbs": 15,
+        "fat": 2,
+        "planType": "Royal Plan",
+        "image": "https://images.unsplash.com/photo-1646783186826-7146151c8c62?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "Sup labu yang creamy dan lezat, terbuat dari labu segar dan bumbu alami. Cocok sebagai hidangan pembuka yang hangat."
+      },
+      {
+        "name": "Salad Udang",
+        "type": "main dish",
+        "protein": 20,
+        "carbs": 6,
+        "fat": 3,
+        "planType": "Royal Plan",
+        "image": "https://images.unsplash.com/photo-1659415402220-91d0f830064d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "Salad udang segar yang disajikan dengan sayuran hijau, dressing lemon, dan potongan alpukat. Kaya protein dan lezat."
+      },
+      {
+        "name": "Matcha Latte",
+        "type": "minuman",
+        "protein": 4,
+        "carbs": 12,
+        "fat": 5,
+        "planType": "Royal Plan",
+        "image": "https://images.unsplash.com/photo-1582785513054-8d1bf9d69c1a?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "Matcha latte yang creamy dan kaya antioksidan, terbuat dari bubuk matcha berkualitas tinggi dan susu almond. Menyegarkan dan menyehatkan."
+      },
+      {
+        "name": "Dark Chocolate Bar",
+        "type": "side dish",
+        "protein": 3,
+        "carbs": 10,
+        "fat": 12,
+        "planType": "Royal Plan",
+        "image": "https://images.unsplash.com/photo-1636450525985-f38e86fd4759?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "Batang cokelat hitam yang kaya antioksidan, terbuat dari 70% kakao. Cocok sebagai camilan sehat yang memuaskan."
+      }
+    ]
+  }
+]

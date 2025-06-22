@@ -1,0 +1,34 @@
+{
+  "umum": {
+    "name": "SEA Catering",
+    "slogan": "Healthy Meals, Anytime, Anywhere",
+    "intro": "Welcome to SEA Catering – your customizable healthy meal service with delivery all across Indonesia.",
+    "welcoming": [
+      "Healthy Meals, Made for Your Life.",
+      "From tailor-made healthy dishes to nationwide delivery, SEA Catering brings you nutritious, delicious food—made just for you, wherever you are in Indonesia."
+    ],
+    "services": [
+      "Meal customization",
+      "Delivery to major cities",
+      "Detailed nutritional information"
+    ],
+    "contact": {
+      "manager": "Brian",
+      "phone": "08123456789"
+    }
+  },
+  "customPlan": {
+    "title": "Your Meals, Your Rules",
+    "description": "Kustomisasi rencana makanmu sesuai kebutuhan: pilih jenis makanan, porsi, jadwal pengiriman, hingga preferensi diet. Kami percaya catering sehat harus fleksibel dan menyenangkan.",
+    "features": [
+      "Bebas pilih menu harian atau mingguan",
+      "Bisa disesuaikan untuk diet, alergi, atau gaya hidup",
+      "Porsi single atau keluarga"
+    ]
+  },
+  "nutritionInfo": {
+    "title": "Eat Smart, Stay Informed",
+    "description": "Makan sehat dimulai dari tahu apa yang kamu makan. Semua menu kami dilengkapi informasi nutrisi lengkap—kalori, protein, lemak, karbohidrat—agar kamu bisa makan dengan sadar dan terencana. Kami juga menyediakan fitur AI untuk bantu rencanakan menu ideal berdasarkan kebutuhan dan preferensi pribadi kamu—sehat jadi makin mudah!",
+    "image": "/images/nutrition-label.png"
+  }
+}
