@@ -41,7 +41,7 @@ export default function TestimonialSlider({ testimonials, onAdd }) {
   };
 
   return (
-    <div className="bg-white py-8 px-4 rounded-lg shadow max-w-3xl mx-auto mt-10">
+    <div className="bg-white py-8 px-4 rounded-lg shadow max-w-3xl mx-auto my-10">
       <h2 className="text-2xl font-bold text-center mb-6">
         What Our Customers Say
       </h2>
@@ -64,13 +64,13 @@ export default function TestimonialSlider({ testimonials, onAdd }) {
       <div className="flex justify-center gap-4 mt-6">
         <button
           onClick={scrollPrev}
-          className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+          className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 cursor-pointer"
         >
           ←
         </button>
         <button
           onClick={scrollNext}
-          className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+          className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 cursor-pointer"
         >
           →
         </button>

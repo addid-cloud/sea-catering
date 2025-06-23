@@ -1,9 +1,12 @@
+import SubcriptionForm from "@/components/SubcriptionForm";
 import { metadata } from "../layout";
+import Navbar from "@/components/Navbar";
 
 export default function Subscription() {
   return (
     <div>
-      <h1>Halaman Subcription</h1>
+      <Navbar />
+      <SubcriptionForm />
     </div>
   );
 }
