@@ -5,14 +5,37 @@ export default function TestimonialForm({ onAdd }) {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [rating, setRating] = useState(5);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name || !message) return;
-    onAdd({ name, message, rating });
-    setName("");
-    setMessage("");
-    setRating(5);
+
+    setLoading(true);
+    try {
+      const res = await fetch("/api/testimonial", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, message, rating }),
+      });
+
+      if (res.ok) {
+        const newTestimonial = await res.json();
+        onAdd(newTestimonial); // masukkan ke slider
+        setName("");
+        setMessage("");
+        setRating(5);
+      } else {
+        alert("Failed to submit testimonial.");
+      }
+    } catch (err) {
+      console.error("Error submitting testimonial:", err);
+      alert("An error occurred.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -55,8 +78,9 @@ export default function TestimonialForm({ onAdd }) {
       <button
         type="submit"
         className="w-full bg-accent text-white font-medium py-2 rounded"
+        disabled={loading}
       >
-        Submit Testimonial
+        {loading ? "Submitting..." : "Submit Testimonial"}
       </button>
     </form>
   );

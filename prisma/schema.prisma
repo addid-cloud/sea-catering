@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Subscription {
+  id         Int      @id @default(autoincrement())
+  name       String
+  phone      String
+  plan       String
+  allergies  String?
+  createdAt  DateTime @default(now())
+  menus      Menu[]
+}
+
+model Menu {
+  id             Int      @id @default(autoincrement())
+  subscription   Subscription @relation(fields: [subscriptionId], references: [id])
+  subscriptionId Int
+  date           String
+  time           String
+  main           String
+  side           String
+  drink          String
+}
+
+model Testimonial {
+  id        Int      @id @default(autoincrement())
+  name      String
+  message   String
+  rating    Int      // rating 1-5
+  createdAt DateTime @default(now())
+}

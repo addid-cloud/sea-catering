@@ -37,9 +37,7 @@ export default function Home() {
         <CustomPlanSection />
         <DetailInformationSection />
         <Services />
-
         <TestimonialSlider testimonials={testimonials} onAdd={handleAdd} />
-
         <Fotter />
         <ContactUs />
       </div>

@@ -4,10 +4,11 @@ import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import TestimonialForm from "./TestimonialForm";
 
-export default function TestimonialSlider({ testimonials, onAdd }) {
+export default function TestimonialSlider() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [showForm, setShowForm] = useState(false);
+  const [testimonials, setTestimonials] = useState([]);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -35,8 +36,15 @@ export default function TestimonialSlider({ testimonials, onAdd }) {
     return () => clearInterval(autoplay);
   }, [emblaApi, onSelect]);
 
+  useEffect(() => {
+    fetch("/api/testimonial")
+      .then((res) => res.json())
+      .then((data) => setTestimonials(data))
+      .catch((err) => console.error("Failed to load testimonials", err));
+  }, []);
+
   const handleAddTestimonial = (testimonial) => {
-    onAdd(testimonial);
+    setTestimonials((prev) => [testimonial, ...prev]);
     setShowForm(false);
   };
 
@@ -90,7 +98,7 @@ export default function TestimonialSlider({ testimonials, onAdd }) {
       <div className="text-center mt-6">
         <button
           onClick={() => setShowForm(!showForm)}
-          className="bg-accent text-white py-2 px-4 rounded "
+          className="bg-accent text-white py-2 px-4 rounded"
         >
           {showForm ? "Close Form" : "Add Testimonial"}
         </button>
