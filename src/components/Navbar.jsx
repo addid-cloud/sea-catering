@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { DotsThreeCircleIcon, X } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
+import LogoutButton from "./LogoutButton";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,6 +39,7 @@ const Navbar = () => {
           >
             Kontak
           </Link>
+          <LogoutButton />
         </div>
 
         {/* Mobile Button */}
@@ -73,6 +75,7 @@ const Navbar = () => {
           >
             Kontak
           </a>
+          <LogoutButton />
         </div>
       )}
     </nav>

@@ -3,9 +3,11 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Card from "@/components/Card";
 import dataMenu from "@/data/Menu-data.json";
+import { useRouter } from "next/navigation";
 import ConfirmModal from "./ConfirmModal";
 
 const steps = ["Contact Info", "Choose Days", "Customize Menu", "Allergies"];
+
 const plans = [
   { name: "Diet Plan", price: 30000 },
   { name: "Protein Plan", price: 40000 },
@@ -33,6 +35,8 @@ const weekdays = [
 const mealTimes = ["Breakfast", "Lunch", "Dinner"];
 
 export default function SubscriptionFormStepper() {
+  const router = useRouter();
+
   const [selectedMealTimes, setSelectedMealTimes] = useState({});
   const [step, setStep] = useState(0);
   const [selectedPlan, setSelectedPlan] = useState(plans[0].name);
@@ -44,6 +48,22 @@ export default function SubscriptionFormStepper() {
     phone: "",
     allergies: "",
   });
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser && storedUser !== "undefined") {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (err) {
+        console.error("Gagal parse user dari localStorage:", err);
+        localStorage.removeItem("user"); // amanin biar ga terus error
+      }
+    } else {
+      console.warn("User belum login atau localStorage kosong");
+    }
+  }, []);
+
   const [selectedDate, setSelectedDate] = useState(null);
   const [customMenus, setCustomMenus] = useState({});
   const [submitted, setSubmitted] = useState(false);
@@ -134,19 +154,36 @@ export default function SubscriptionFormStepper() {
     const payload = {
       ...formData,
       plan: selectedPlan,
+      userId: user?.id, // tambahkan ini
       menus: Object.entries(fullMenus).map(([key, value]) => {
-        const [date, time] = key.split("-");
+        const parts = key.split("-");
+        const date = parts.slice(0, 3).join("-"); // "2025-06-27"
+        const time = parts[3]; // "Breakfast", "Lunch", dsb
         return { date, time, ...value };
       }),
     };
 
     try {
+      console.log("Payload submitted:", payload);
       const response = await axios.post("/api/subscription", payload);
       console.log("Success:", response.data);
     } catch (error) {
       console.error("Error submitting:", error);
     }
   };
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    console.log("LocalStorage user:", storedUser);
+
+    if (storedUser) {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (err) {
+        console.error("Invalid user JSON in localStorage:", err);
+      }
+    }
+  }, []);
 
   const getRandomMenu = (menus, type) => {
     const filtered = menus.filter((m) => getStandardType(m.type) === type);

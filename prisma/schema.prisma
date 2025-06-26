@@ -15,6 +15,8 @@ model Subscription {
   allergies  String?
   createdAt  DateTime @default(now())
   menus      Menu[]
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
 }
 
 model Menu {
@@ -27,11 +29,24 @@ model Menu {
   side           String
   drink          String
 }
+model User {
+  id        Int        @id @default(autoincrement())
+  fullName  String
+  email     String     @unique
+  password  String     // disimpan dalam bentuk hash
+  role      Role       @default(USER)
+  createdAt DateTime   @default(now())
+  subscriptions Subscription[]
+}
 
 model Testimonial {
   id        Int      @id @default(autoincrement())
   name      String
   message   String
-  rating    Int      // rating 1-5
+  rating    Int      
   createdAt DateTime @default(now())
+}
+enum Role {
+  USER
+  ADMIN
 }

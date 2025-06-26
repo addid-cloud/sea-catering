@@ -1,11 +1,17 @@
-import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
+import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
 export async function POST(req) {
-  const data = await req.json();
-  const { name, phone, plan, allergies, menus } = data;
+  const { name, phone, plan, allergies, menus, userId } = await req.json();
+
+  if (!userId) {
+    return NextResponse.json(
+      { error: "User not authenticated" },
+      { status: 401 }
+    );
+  }
 
   const subscription = await prisma.subscription.create({
     data: {
@@ -13,6 +19,7 @@ export async function POST(req) {
       phone,
       plan,
       allergies,
+      userId,
       menus: {
         create: menus.map((menu) => ({
           date: menu.date,
