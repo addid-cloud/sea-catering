@@ -72,14 +72,14 @@ npm run format
 
 ```
 src/
+  App/
   components/
     SubscriptionForm.jsx
     ConfirmModal.jsx
     ...
-  App.jsx
-  main.jsx
   ...
 public/
+prisma/
   ...
 ```
 
