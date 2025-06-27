@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sea Catering Subscription App
 
-## Getting Started
+A modern web application for managing catering subscriptions, allowing users to customize meal plans, select delivery days, and personalize menus.
 
-First, run the development server:
+## Features
+
+- Multi-step subscription form
+- Customizable meal selection (main, side, drink)
+- Day and time selection for meal delivery
+- Allergy notes
+- Confirmation modal before submission
+- Responsive and modern UI with Tailwind CSS
+
+## Tech Stack
+
+- **React** (Vite or Create React App)
+- **Tailwind CSS**
+- **Context API & Hooks**
+- **ESLint & Prettier** (recommended)
+
+---
+
+## Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/sea-catering.git
+cd sea-catering
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+# atau
+yarn install
+```
+
+### 3. Start the Development Server
 
 ```bash
 npm run dev
-# or
+# atau
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+# atau
+yarn build
+```
 
-## Learn More
+The production-ready files will be in the `dist` folder.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Linting & Formatting
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run lint
+npm run format
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+  components/
+    SubscriptionForm.jsx
+    ConfirmModal.jsx
+    ...
+  App.jsx
+  main.jsx
+  ...
+public/
+  ...
+```
+
+---
+
+## Customization
+
+- **Edit meal plans, menu, and logic** in `src/components/SubscriptionForm.jsx`.
+- **Styling** is handled by Tailwind CSS. You can customize the theme in `tailwind.config.js`.
+
+---
+
+## Troubleshooting
+
+- If you see errors about missing dependencies, run `npm install` again.
+- For Tailwind CSS issues, ensure your IDE has the Tailwind CSS IntelliSense extension.
+
+---
+
+
+**Happy catering! 🍱**
