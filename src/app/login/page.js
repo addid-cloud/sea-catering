@@ -64,12 +64,12 @@ export default function login() {
         </Link>
         <button
           type="submit"
-          disabled={loading} // ← tombol disable saat loading
+          disabled={loading}
           className={`w-full bg-accent text-white p-2 rounded transition ${
             loading ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
           }`}
         >
-          {loading ? "Registering..." : "Register"}
+          {loading ? "Logining..." : "Login"}
         </button>
       </form>
     </div>

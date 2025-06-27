@@ -57,7 +57,7 @@ export default function SubscriptionFormStepper() {
         setUser(JSON.parse(storedUser));
       } catch (err) {
         console.error("Gagal parse user dari localStorage:", err);
-        localStorage.removeItem("user"); // amanin biar ga terus error
+        localStorage.removeItem("user");
       }
     } else {
       console.warn("User belum login atau localStorage kosong");
@@ -120,29 +120,33 @@ export default function SubscriptionFormStepper() {
   };
 
   const handleMenuSelect = (date, time, meal) => {
-    console.log("Selected meal:", meal);
     const key = `${date}-${time}`;
     setCustomMenus((prev) => {
       const existing = prev[key] || {};
-      const updated = {
+      return {
         ...prev,
         [key]: {
           ...existing,
           [getStandardType(meal.type)]: meal.name,
         },
       };
-      console.log("Updated customMenus:", updated);
-      return updated;
     });
   };
 
   const next = () => setStep((s) => Math.min(s + 1, steps.length - 1));
   const back = () => setStep((s) => Math.max(s - 1, 0));
 
+  const calculateTotalPrice = () => {
+    const totalMealTimes = generatedDates.reduce((total, d) => {
+      return total + (selectedMealTimes[d.dayName]?.length || 0);
+    }, 0);
+    const plan = plans.find((p) => p.name === selectedPlan);
+    return totalMealTimes * (plan?.price || 0);
+  };
+
   const handleSubmit = () => {
-    console.log({ ...formData, selectedPlan, customMenus });
     setShowConfirm(true);
-    setSubmitted(true);
+    // setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
   };
 
@@ -154,36 +158,24 @@ export default function SubscriptionFormStepper() {
     const payload = {
       ...formData,
       plan: selectedPlan,
-      userId: user?.id, // tambahkan ini
+      userId: user?.id,
+      totalPrice: calculateTotalPrice(),
       menus: Object.entries(fullMenus).map(([key, value]) => {
         const parts = key.split("-");
-        const date = parts.slice(0, 3).join("-"); // "2025-06-27"
-        const time = parts[3]; // "Breakfast", "Lunch", dsb
+        const date = parts.slice(0, 3).join("-");
+        const time = parts[3];
         return { date, time, ...value };
       }),
     };
 
     try {
-      console.log("Payload submitted:", payload);
       const response = await axios.post("/api/subscription", payload);
+      router.push("/");
       console.log("Success:", response.data);
     } catch (error) {
       console.error("Error submitting:", error);
     }
   };
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    console.log("LocalStorage user:", storedUser);
-
-    if (storedUser) {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (err) {
-        console.error("Invalid user JSON in localStorage:", err);
-      }
-    }
-  }, []);
 
   const getRandomMenu = (menus, type) => {
     const filtered = menus.filter((m) => getStandardType(m.type) === type);
@@ -194,16 +186,13 @@ export default function SubscriptionFormStepper() {
 
   const generateFullMenus = () => {
     const fullMenus = {};
-
     generatedDates.forEach((d) => {
       const times = selectedMealTimes[d.dayName] || [];
       times.forEach((time) => {
         const key = `${d.dateStr}-${time}`;
         const selected = customMenus[key] || {};
-
         const menus =
           dataMenu.find((m) => m.plan === selectedPlan)?.menuSelection || [];
-
         fullMenus[key] = {
           main: selected.main || getRandomMenu(menus, "main"),
           side: selected.side || getRandomMenu(menus, "side"),
@@ -211,10 +200,16 @@ export default function SubscriptionFormStepper() {
         };
       });
     });
-
     return fullMenus;
   };
+  const totalMeals = generatedDates.reduce((count, date) => {
+    const mealsPerDay = selectedMealTimes[date.dayName]?.length || 0;
+    return count + mealsPerDay;
+  }, 0);
 
+  const selectedPlanObj = plans.find((p) => p.name === selectedPlan);
+  const pricePerMeal = selectedPlanObj?.price || 0;
+  const totalPrice = totalMeals * pricePerMeal;
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
@@ -453,6 +448,7 @@ export default function SubscriptionFormStepper() {
       {showConfirm && (
         <ConfirmModal
           menus={generateFullMenus()}
+          totalPrice={totalPrice}
           onConfirm={confirmFinalSubmit}
           onCancel={() => setShowConfirm(false)}
         />

@@ -2,12 +2,17 @@
 
 import { X } from "@phosphor-icons/react";
 
-export default function ConfirmModal({ menus, onConfirm, onCancel }) {
+export default function ConfirmModal({
+  menus,
+  totalPrice,
+  onConfirm,
+  onCancel,
+}) {
   const formatMenus = () => {
     const result = {};
     Object.entries(menus).forEach(([key, value]) => {
       const [date, time] = key.split("-");
-      const dayTime = key.slice(date.length + 1); // handles time with hyphen like 'Lunch-Evening'
+      const dayTime = key.slice(date.length + 1);
       if (!result[date]) result[date] = {};
       result[date][dayTime] = Object.entries(value).map(
         ([type, item]) => `${type}: ${item}`
@@ -31,6 +36,9 @@ export default function ConfirmModal({ menus, onConfirm, onCancel }) {
         </button>
 
         <h2 className="text-xl font-bold mb-4 text-center">Konfirmasi Menu</h2>
+        <p className="text-lg font-semibold text-center mt-4">
+          💰 Total Price: Rp{totalPrice.toLocaleString()}
+        </p>
 
         {Object.keys(displayMenus).length === 0 ? (
           <p className="text-gray-500 text-sm text-center">

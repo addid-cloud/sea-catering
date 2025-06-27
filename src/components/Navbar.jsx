@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { DotsThreeCircleIcon, X } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import LogoutButton from "./LogoutButton";
+import AuthButton from "./AuthButton";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,8 +17,7 @@ const Navbar = () => {
           <img src="/logo.svg" alt="SEA Catering Logo" className="w-8 h-8" />
         </div>
 
-        {/* Desktop Menu */}
-        <div className="space-x-6 hidden md:flex font-bold">
+        <div className="space-x-6 hidden md:flex items-center  font-bold">
           <Link href="/" className="text-gray-700 hover:text-accent transition">
             Home
           </Link>
@@ -39,35 +39,32 @@ const Navbar = () => {
           >
             Kontak
           </Link>
-          <LogoutButton />
+          <AuthButton />
         </div>
 
-        {/* Mobile Button */}
         <button className="md:hidden" onClick={toggleMenu}>
           {isOpen ? <X size={28} /> : <DotsThreeCircleIcon size={28} />}
         </button>
       </div>
-
-      {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden px-4 pb-4 space-y-2">
           <a
             href="#opening"
             className="block text-gray-700 hover:text-accent transition"
           >
-            Tentang
+            Home
           </a>
           <a
             href="#map"
             className="block text-gray-700 hover:text-accent transition"
           >
-            Lokasi
+            Menu
           </a>
           <a
             href="#services"
             className="block text-gray-700 hover:text-accent transition"
           >
-            Layanan
+            Subcription
           </a>
           <a
             href="#contact"
@@ -75,7 +72,7 @@ const Navbar = () => {
           >
             Kontak
           </a>
-          <LogoutButton />
+          <AuthButton />
         </div>
       )}
     </nav>

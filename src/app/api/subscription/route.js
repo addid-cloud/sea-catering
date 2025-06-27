@@ -13,6 +13,15 @@ export async function POST(req) {
     );
   }
 
+  const planPrices = {
+    "Diet Plan": 30000,
+    "Protein Plan": 40000,
+    "Royal Plan": 60000,
+  };
+
+  const mealCount = menus.length;
+  const planPrice = planPrices[plan] || 0;
+  const totalPrice = mealCount * planPrice;
   const subscription = await prisma.subscription.create({
     data: {
       name,
@@ -20,6 +29,7 @@ export async function POST(req) {
       plan,
       allergies,
       userId,
+      totalPrice,
       menus: {
         create: menus.map((menu) => ({
           date: menu.date,
