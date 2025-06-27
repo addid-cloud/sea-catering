@@ -1,95 +1,71 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { format } from "date-fns";
 
 export default function AdminDashboard() {
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
   const [metrics, setMetrics] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [startDate, setStartDate] = useState("2025-06-01");
+  const [endDate, setEndDate] = useState("2025-06-30");
 
   const fetchMetrics = async () => {
-    if (!startDate || !endDate) return;
-    setLoading(true);
     try {
-      const res = await axios.get("/api/admin-dashboard", {
-        params: { startDate, endDate },
-      });
+      const res = await axios.get(
+        `/api/admin-dashboard?start=${startDate}&end=${endDate}`
+      );
       setMetrics(res.data);
     } catch (err) {
-      console.error("Error fetching admin metrics:", err);
-    } finally {
-      setLoading(false);
+      console.error("Fetch error:", err);
     }
   };
 
   useEffect(() => {
-    const today = new Date();
-    const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
-    setStartDate(format(monthStart, "yyyy-MM-dd"));
-    setEndDate(format(today, "yyyy-MM-dd"));
-  }, []);
-
-  useEffect(() => {
-    if (startDate && endDate) fetchMetrics();
+    fetchMetrics();
   }, [startDate, endDate]);
 
+  if (!metrics) return <p>Loading...</p>;
+
   return (
-    <div className="max-w-5xl mx-auto mt-10 p-6">
-      <h1 className="text-3xl font-bold mb-6 text-center">Admin Dashboard</h1>
-      <div className="flex justify-center gap-4 mb-6">
-        <div>
-          <label className="text-sm">Start Date</label>
-          <input
-            type="date"
-            className="border rounded px-3 py-1"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          />
-        </div>
-        <div>
-          <label className="text-sm">End Date</label>
-          <input
-            type="date"
-            className="border rounded px-3 py-1"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-          />
-        </div>
+    <div className="p-6 max-w-4xl mx-auto">
+      <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
+
+      <div className="flex gap-4 mb-6">
+        <input
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+          className="border p-2 rounded"
+        />
+        <input
+          type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+          className="border p-2 rounded"
+        />
+        <button
+          onClick={fetchMetrics}
+          className="bg-blue-600 text-white px-4 rounded"
+        >
+          Refresh
+        </button>
       </div>
 
-      {loading ? (
-        <p className="text-center">Loading...</p>
-      ) : metrics ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <MetricCard
-            title="New Subscriptions"
-            value={metrics.newSubscriptions}
-          />
-          <MetricCard
-            title="Monthly Recurring Revenue (MRR)"
-            value={`Rp${metrics.mrr.toLocaleString("id-ID")}`}
-          />
-          <MetricCard title="Reactivations" value={metrics.reactivations} />
-          <MetricCard
-            title="Subscription Growth"
-            value={metrics.activeSubscriptions}
-          />
+      <div className="grid grid-cols-2 gap-4">
+        <div className="p-4 border rounded shadow">
+          <h2 className="text-lg font-semibold">New Subscriptions</h2>
+          <p>{metrics.newSubscriptions}</p>
         </div>
-      ) : (
-        <p className="text-center text-gray-600">No data available.</p>
-      )}
-    </div>
-  );
-}
-
-function MetricCard({ title, value }) {
-  return (
-    <div className="bg-white rounded-xl p-6 shadow hover:shadow-md transition border">
-      <h3 className="text-lg font-medium text-gray-600 mb-2">{title}</h3>
-      <p className="text-2xl font-bold text-blue-700">{value}</p>
+        <div className="p-4 border rounded shadow">
+          <h2 className="text-lg font-semibold">MRR</h2>
+          <p>Rp{metrics.mrr.toLocaleString("id-ID")}</p>
+        </div>
+        <div className="p-4 border rounded shadow">
+          <h2 className="text-lg font-semibold">Reactivations</h2>
+          <p>{metrics.reactivations}</p>
+        </div>
+        <div className="p-4 border rounded shadow">
+          <h2 className="text-lg font-semibold">Total Active</h2>
+          <p>{metrics.totalActive}</p>
+        </div>
+      </div>
     </div>
   );
 }
