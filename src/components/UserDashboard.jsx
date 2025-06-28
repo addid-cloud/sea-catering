@@ -52,6 +52,23 @@ export default function UserDashboard() {
 
   if (loading) return <p className="text-center mt-10">Loading...</p>;
 
+  if (!loading && subscriptions.length === 0) {
+    return (
+      <div className="max-w-xl mx-auto mt-20 text-center">
+        <h1 className="text-3xl font-bold mb-4">No Subscriptions Yet</h1>
+        <p className="text-gray-600 mb-6">
+          You haven't subscribed to any meal plan yet.
+        </p>
+        <a
+          href="/subscribe"
+          className="bg-accent text-white px-4 py-2 rounded transition"
+        >
+          Subscribe Now
+        </a>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-5xl mx-auto mt-10 p-4">
       <div className="absolute top-20 left-4">

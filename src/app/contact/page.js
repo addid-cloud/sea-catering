@@ -1,9 +1,12 @@
+import { Contact } from "@/components/Contact";
 import { metadata } from "../layout";
+import Navbar from "@/components/Navbar";
 
-export default function Contact() {
+export default function contact() {
   return (
     <div>
-      <h1>Halaman Contact</h1>
+      <Navbar />
+      <Contact />
     </div>
   );
 }

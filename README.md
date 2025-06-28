@@ -2,6 +2,15 @@
 
 A modern web application for managing catering subscriptions, allowing users to customize meal plans, select delivery days, and personalize menus.
 
+## test account
+
+- **ADMIN**
+  Email : "admin123@gmail.com"
+  pass : "Admin_06"
+- **MEMBER / USER**
+  Email : "adit13062006@gmail.com"
+  pass : "Addid_06"
+
 ## Features
 
 - Multi-step subscription form
@@ -98,6 +107,5 @@ prisma/
 - For Tailwind CSS issues, ensure your IDE has the Tailwind CSS IntelliSense extension.
 
 ---
-
 
 **Happy catering! 🍱**

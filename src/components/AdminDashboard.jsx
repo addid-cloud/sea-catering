@@ -25,8 +25,10 @@ export default function AdminDashboard() {
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
+      <div className="absolute top-20 left-4">
+        <LogoutButton />
+      </div>
       <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
-
       <div className="flex gap-4 mb-6">
         <input
           type="date"

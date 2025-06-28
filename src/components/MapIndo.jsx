@@ -51,7 +51,7 @@ export const MapIndo = () => {
             </span>
           </div>
         ))}
-        <button className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hover:bg-[#292d29] cursor-pointer font-bold p-3 bg-primary-dark text-primary-white w-fit rounded">
+        <button className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hover:bg-[#292d29] cursor-pointer font-bold p-3 bg-primary-dark text-primary-white w-fit rounded md:text-base text-xs">
           check our outlet on your location
         </button>
       </div>

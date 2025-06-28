@@ -7,11 +7,18 @@ import { useRouter } from "next/navigation";
 import ConfirmModal from "./ConfirmModal";
 
 const steps = ["Contact Info", "Choose Days", "Customize Menu", "Allergies"];
-
 const plans = [
-  { name: "Diet Plan", price: 30000 },
-  { name: "Protein Plan", price: 40000 },
-  { name: "Royal Plan", price: 60000 },
+  {
+    name: "Diet Plan",
+    price: 30000,
+    description: "Rendah kalori, sehat & ringan",
+  },
+  {
+    name: "Protein Plan",
+    price: 40000,
+    description: "Tinggi protein, cocok untuk gym",
+  },
+  { name: "Royal Plan", price: 60000, description: "Lengkap dan premium" },
 ];
 
 const calculateCalories = (meal) => {
@@ -240,44 +247,78 @@ export default function SubscriptionFormStepper() {
       )}
 
       {step === 1 && (
-        <div>
-          <p className="font-medium mb-2">Pilih hari dan waktu makan</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {weekdays.map((day) => (
-              <div
-                key={day}
-                className={`rounded-xl p-4 shadow cursor-pointer transition-all duration-200 border hover:shadow-lg ${
-                  selectedDays.includes(day)
-                    ? "bg-accent text-white"
-                    : "bg-gray-100"
-                }`}
-                onClick={() => toggleDay(day)}
-              >
-                <p className="font-semibold mb-2">{day}</p>
-                <div className="flex flex-wrap gap-2">
-                  {mealTimes.map((time) => (
-                    <button
-                      key={time}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (selectedDays.includes(day))
-                          toggleMealTime(day, time);
-                      }}
-                      type="button"
-                      className={`text-sm px-3 py-1 rounded transition ${
-                        selectedMealTimes[day]?.includes(time)
-                          ? "bg-accent text-white"
-                          : selectedDays.includes(day)
-                          ? "bg-blue-200 hover:bg-blue-300"
-                          : "bg-gray-200 cursor-not-allowed"
-                      }`}
-                    >
-                      {time}
-                    </button>
-                  ))}
+        <div className="space-y-6">
+          <div>
+            <p className="font-medium mb-2">Pilih Plan</p>
+            <div className="flex flex-wrap gap-4">
+              {plans.map((planObj) => (
+                <label
+                  key={planObj.name}
+                  className={`px-4 py-2 rounded-xl shadow cursor-pointer transition-all border ${
+                    selectedPlan === planObj.name
+                      ? "bg-accent text-white"
+                      : "bg-gray-100 hover:bg-blue-100"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="plan"
+                    value={planObj.name}
+                    className="hidden"
+                    onChange={() => setSelectedPlan(planObj.name)}
+                    checked={selectedPlan === planObj.name}
+                  />
+                  <div>
+                    <p className="font-bold">{planObj.name}</p>
+                    <p className="text-sm">{planObj.description}</p>
+                    <p className="text-sm mt-1 text-primary-white">
+                      Rp{planObj.price.toLocaleString()}
+                    </p>
+                  </div>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p className="font-medium mb-2">Pilih hari dan waktu makan</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {weekdays.map((day) => (
+                <div
+                  key={day}
+                  className={`rounded-xl p-4 shadow cursor-pointer transition-all duration-200 border hover:shadow-lg ${
+                    selectedDays.includes(day)
+                      ? "bg-accent text-white"
+                      : "bg-gray-100 text-black"
+                  }`}
+                  onClick={() => toggleDay(day)}
+                >
+                  <p className="font-semibold mb-2">{day}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {mealTimes.map((time) => (
+                      <button
+                        key={time}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (selectedDays.includes(day))
+                            toggleMealTime(day, time);
+                        }}
+                        type="button"
+                        className={`text-sm px-3 py-1 rounded transition ${
+                          selectedMealTimes[day]?.includes(time)
+                            ? "bg-accent text-white"
+                            : selectedDays.includes(day)
+                            ? "bg-blue-200 hover:bg-blue-300"
+                            : "bg-gray-200 cursor-not-allowed"
+                        }`}
+                      >
+                        {time}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -303,7 +344,7 @@ export default function SubscriptionFormStepper() {
                       className={`text-xs px-2 py-1 rounded transition font-medium ${
                         selectedDate?.dateStr === d.dateStr &&
                         selectedDate?.time === time
-                          ? "bg-blue-600 text-white"
+                          ? "bg-accent text-white"
                           : "bg-blue-200 hover:bg-blue-300 text-gray-800"
                       }`}
                     >
@@ -320,30 +361,47 @@ export default function SubscriptionFormStepper() {
               <h3 className="text-lg font-semibold mb-2">
                 Custom Menu for {selectedDate.dateStr} – {selectedDate.time}
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {dataMenu
-                  .filter((m) => m.plan === selectedPlan)
-                  .map((m) => m.menuSelection)
-                  .flat()
-                  .map((meal, idx) => {
-                    const key = `${selectedDate.dateStr}-${selectedDate.time}`;
-                    const type = getStandardType(meal.type);
-                    const selected = customMenus[key]?.[type] === meal.name;
-                    return (
-                      <Card
-                        key={`${meal.name}-${idx}`}
-                        meal={meal}
-                        handleMenuSelect={handleMenuSelect}
-                        selectedDateForMenu={selectedDate}
-                        mealTime={selectedDate?.time}
-                        selected={
-                          customMenus[
-                            `${selectedDate.dateStr}-${selectedDate.time}`
-                          ]?.[getStandardType(meal.type)] === meal.name
-                        }
-                      />
-                    );
-                  })}
+              <div className="flex flex-col justify-center items-center">
+                {["main", "side", "drink"].map((type) => {
+                  const meals =
+                    dataMenu
+                      .find((m) => m.plan === selectedPlan)
+                      ?.menuSelection.filter(
+                        (meal) => getStandardType(meal.type) === type
+                      ) || [];
+
+                  return (
+                    <div key={type} className="mb-10">
+                      <h4 className="text-xl font-semibold capitalize mb-3">
+                        {type === "main"
+                          ? "🍽️ Main Dish"
+                          : type === "side"
+                          ? "🥗 Side Dish"
+                          : "🥤 Drink"}
+                      </h4>
+
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        {meals.map((meal, idx) => {
+                          const key = `${selectedDate.dateStr}-${selectedDate.time}`;
+                          return (
+                            <Card
+                              key={`${meal.name}-${idx}`}
+                              meal={meal}
+                              handleMenuSelect={handleMenuSelect}
+                              selectedDateForMenu={selectedDate}
+                              mealTime={selectedDate?.time}
+                              selected={
+                                customMenus[key]?.[
+                                  getStandardType(meal.type)
+                                ] === meal.name
+                              }
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}

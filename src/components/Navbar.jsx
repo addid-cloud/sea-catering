@@ -48,30 +48,30 @@ const Navbar = () => {
       </div>
       {isOpen && (
         <div className="md:hidden px-4 pb-4 space-y-2">
-          <a
-            href="#opening"
+          <Link
+            href="/"
             className="block text-gray-700 hover:text-accent transition"
           >
             Home
-          </a>
-          <a
-            href="#map"
+          </Link>
+          <Link
+            href="/menu"
             className="block text-gray-700 hover:text-accent transition"
           >
             Menu
-          </a>
-          <a
-            href="#services"
+          </Link>
+          <Link
+            href="/subscription"
             className="block text-gray-700 hover:text-accent transition"
           >
             Subcription
-          </a>
-          <a
-            href="#contact"
+          </Link>
+          <Link
+            href="/contact"
             className="block text-gray-700 hover:text-accent transition"
           >
             Kontak
-          </a>
+          </Link>
           <AuthButton />
         </div>
       )}
