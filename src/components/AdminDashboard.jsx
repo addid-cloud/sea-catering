@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import LogoutButton from "./LogoutButton";
 
 export default function AdminDashboard() {
   const [metrics, setMetrics] = useState(null);

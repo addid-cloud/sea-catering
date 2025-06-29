@@ -153,7 +153,6 @@ export default function SubscriptionFormStepper() {
 
   const handleSubmit = () => {
     setShowConfirm(true);
-    // setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
   };
 
@@ -225,7 +224,6 @@ export default function SubscriptionFormStepper() {
       <h2 className="text-2xl font-bold mb-6 text-center">
         Step {step + 1} of {steps.length}
       </h2>
-
       {step === 0 && (
         <div>
           <label className="block mb-2 font-medium">Name</label>
@@ -235,7 +233,6 @@ export default function SubscriptionFormStepper() {
             onChange={(e) => handleChange("name", e.target.value)}
             required
           />
-
           <label className="block mb-2 font-medium">Phone</label>
           <input
             className="w-full border p-2 rounded"
@@ -245,7 +242,6 @@ export default function SubscriptionFormStepper() {
           />
         </div>
       )}
-
       {step === 1 && (
         <div className="space-y-6">
           <div>
@@ -279,7 +275,6 @@ export default function SubscriptionFormStepper() {
               ))}
             </div>
           </div>
-
           <div>
             <p className="font-medium mb-2">Pilih hari dan waktu makan</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -322,7 +317,6 @@ export default function SubscriptionFormStepper() {
           </div>
         </div>
       )}
-
       {step === 2 && (
         <div>
           <p className="font-medium mb-4">
@@ -355,7 +349,6 @@ export default function SubscriptionFormStepper() {
               </div>
             ))}
           </div>
-
           {selectedDate && (
             <div className="mt-6">
               <h3 className="text-lg font-semibold mb-2">
@@ -379,7 +372,6 @@ export default function SubscriptionFormStepper() {
                           ? "🥗 Side Dish"
                           : "🥤 Drink"}
                       </h4>
-
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                         {meals.map((meal, idx) => {
                           const key = `${selectedDate.dateStr}-${selectedDate.time}`;

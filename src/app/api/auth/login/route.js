@@ -12,6 +12,23 @@ export async function POST(req) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
   }
 
+  console.log("user ditemukan:", user);
+
+  if (!user) {
+    return NextResponse.json(
+      { error: "Email tidak ditemukan" },
+      { status: 401 }
+    );
+  }
+
+  const passwordMatch = await comparePassword(password, user.password);
+
+  console.log("Password cocok?", passwordMatch);
+
+  if (!passwordMatch) {
+    return NextResponse.json({ error: "Password salah" }, { status: 401 });
+  }
+
   const token = generateToken({
     id: user.id,
     email: user.email,
